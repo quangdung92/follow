@@ -1,0 +1,22 @@
+<center><h1>Post news</h1>
+<%= form_tag(:controller =>"post", :action => "create", :method => "post") do %>
+<% if @post.errors.any? %>
+<h2>Errors:</h2>
+<ul>
+	<% @post.errors.full_messages.each do |message| %>
+	<li><%= message %></li>
+	<%end%>
+	</ul>
+	<%end%>
+<%= text_area_tag(:content) %><br />
+<%= submit_tag("save")%><a href="/welcome/index">Thoat</a>
+<%end%>
+</center>
+<hr />	
+<h2>Display</h2><br />
+<% if !@posts.blank? %>
+<% for item in @posts %>
+<%= item.content%><br />
+<%end%>
+<%else%>
+<%end%>
