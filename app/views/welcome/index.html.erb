@@ -1,0 +1,9 @@
+<center><h1>Login</h1>
+
+<%= form_tag(:controller =>"welcome", :action => "login", :method => "post") do %>
+username<%= text_field_tag(:username)%><br />
+password<%= password_field_tag(:pass)%><br />
+<%= submit_tag("Login") %>
+<%end%>
+<a href="/user/new">dang ky</a>
+</center>
