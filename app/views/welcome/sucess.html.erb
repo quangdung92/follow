@@ -1,0 +1,36 @@
+<h1>Dang nhap thanh cong</h1><br />
+Bat dau post bai:
+<%= link_to "Bat dau viet",post_new_path%>
+<hr />
+Following
+<ul>
+  <% @current_user.following.each do |u| %>
+    <li><%= link_to u.username, u %></li>
+  <% end %>
+</ul>
+Followed
+<ul>
+  <% @current_user.followers.each do |u| %>
+    <li><%= link_to u.username, u %></li>
+  <% end %>
+</ul>
+<h3>Danh sach nguoi dung</h3><br />
+<% if !@users.blank? %>
+<% for @user in @users %>
+<%= @user.username%><br />
+<% if @current_user && @current_user != @user %>
+  <% if @current_user.following.include?(@user) %>
+    <%= link_to "Unfollow", 
+      relation_path(@current_user.relation_for(@user)), 
+      :method => :delete %>
+  <% else %>
+    <%= form_for @relation do |f| %>
+      <%= f.hidden_field :following_id, :value => @user.id %>
+      <%= f.hidden_field :id, :value => @current_user.id %>
+      <%= f.submit "Follow" %>
+    <% end %>
+  <% end %>
+<% end %>
+<%end%>
+<%else%>
+<%end%>
