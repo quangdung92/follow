@@ -1,0 +1,15 @@
+<center><h1>sign up</h1>
+<%= form_tag(:controller =>"user", :action => "signup", :method => "post") do %>
+<% if @user.errors.any? %>
+<h2>Errors:</h2>
+<ul>
+	<% @user.errors.full_messages.each do |message| %>
+	<li><%= message %></li>
+	<%end%>
+	</ul>
+	<%end%>
+Username<%= text_field_tag(:username)%><br />
+Password<%= text_field_tag(:pass)%><br />
+<%= submit_tag("save")%>
+<%end%>
+</center>
