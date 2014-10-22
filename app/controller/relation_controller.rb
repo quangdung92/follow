@@ -1,9 +1,8 @@
 class RelationController < ApplicationController
   def create
-    @current_user = User.find(params[:relation][:id])
     follow = User.find(params[:relation][:following_id])
-    @current_user.following << follow
-    redirect_to @current_user
+    current_user.following << follow
+    redirect_to follow
   end
 
   def destroy
