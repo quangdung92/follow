@@ -1,21 +1,18 @@
 class WelcomeController < ApplicationController
-def index
+  def index
   end
- def login
-    @user = User.login(params[:username], params[:pass])
-    if @user.blank?          
-      redirect_to :action => "error"  
+ def create
+    user = User.login(params[:session][:username], params[:session][:pass])
+      if user
+      login user
+      redirect_to user
     else
-      redirect_to @user
-    end   
+      render 'index'
+    end
+    end
  def sucess
+   @user = User.find(params[:id])
    @users = User.all
-   @current_user = User.find(params[:id])
    @relation = Relation.new
  end
- def error 
- end 
- def show
- end
-end
 end
