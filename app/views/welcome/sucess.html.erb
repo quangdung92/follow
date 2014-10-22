@@ -1,20 +1,23 @@
 <h1>Dang nhap thanh cong</h1><br />
 Bat dau post bai:
-<%= link_to "Bat dau viet",post_new_path%>
+<a href="/post/new">bat dau viet</a>
 <hr />
+<h2><%= @user.username%><br /></h2>
+<h2><%= @user.pass%></h2><br />
+
 Following
 <ul>
-  <% @current_user.following.each do |u| %>
+  <% current_user.following.each do |u| %>
     <li><%= link_to u.username, u %></li>
   <% end %>
 </ul>
-Followed
+Followed By
 <ul>
-  <% @current_user.followers.each do |u| %>
+  <% current_user.followers.each do |u| %>
     <li><%= link_to u.username, u %></li>
   <% end %>
 </ul>
-<h3>Danh sach nguoi dung</h3><br />
+List Users<br />
 <% if !@users.blank? %>
 <% for @user in @users %>
 <%= @user.username%><br />
@@ -26,7 +29,6 @@ Followed
   <% else %>
     <%= form_for @relation do |f| %>
       <%= f.hidden_field :following_id, :value => @user.id %>
-      <%= f.hidden_field :id, :value => @current_user.id %>
       <%= f.submit "Follow" %>
     <% end %>
   <% end %>
