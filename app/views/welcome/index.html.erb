@@ -1,9 +1,12 @@
 <center><h1>Login</h1>
+	<%= form_for(:session, url: login_path) do |f| %>   
+              <%= f.label :username %>
+              <%= f.text_field :username %>
 
-<%= form_tag(:controller =>"welcome", :action => "login", :method => "post") do %>
-username<%= text_field_tag(:username)%><br />
-password<%= password_field_tag(:pass)%><br />
-<%= submit_tag("Login") %>
-<%end%>
+              <%= f.label :pass %>
+              <%= f.password_field :pass %>
+
+              <%= f.submit "Log in" %>
+    <% end %>
 <a href="/user/new">dang ky</a>
 </center>
