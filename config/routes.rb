@@ -17,7 +17,7 @@ Thuchanh::Application.routes.draw do
   resources :posts
   resources :relations
   
-  match '/login', to: 'welcome#login', via: 'post'
+  post   'login'   =>  'welcome#create'
   match '/create', to: 'post#create', via: 'post'
   match '/signup', to: 'user#signup', via: 'post'
   # The priority is based upon order of creation:
