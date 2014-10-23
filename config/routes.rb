@@ -12,10 +12,9 @@ Thuchanh::Application.routes.draw do
   root :to => "welcome#index"
   get '/users/:id', :to => 'welcome#sucess', :as => "user"
   match '/relations', to: 'relation#create', via: 'post'
-  
   resources :users
   resources :posts
-  resources :relations
+  resources :relations,  only: [:create, :destroy]
   
   post   'login'   =>  'welcome#create'
   match '/create', to: 'post#create', via: 'post'
