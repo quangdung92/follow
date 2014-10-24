@@ -5,7 +5,10 @@ class MicropostController < ApplicationController
   end
   def create
     @post = current_user.microposts.create(:content => params[:content])
-    render "new"
+    if @post
+    redirect_to micropost_new_path
+    else
+  end
   end
 end
 
