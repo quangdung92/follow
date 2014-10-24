@@ -21,4 +21,7 @@ class User < ActiveRecord::Base
       return user
     end
     end
+  def unfollow(other_user)
+    following_relations.find_by_following_id(other_user.id).destroy
+  end
 end
