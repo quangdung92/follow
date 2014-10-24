@@ -12,11 +12,13 @@ Thuchanh::Application.routes.draw do
   root :to => "welcome#index"
   get '/users/:id', :to => 'welcome#sucess', :as => "user"
   match '/relations', to: 'relation#create', via: 'post'
+  match '/relations/:id', to: 'relation#destroy', via: 'delete'
   resources :users
   resources :posts
   resources :relations,  only: [:create, :destroy]
   
-  post   'login'   =>  'welcome#create'
+  match '/login', to: 'welcome#create', via: 'post'
+  match '/logout' => 'welcome#destroy', as: :logout
   match '/create', to: 'post#create', via: 'post'
   match '/signup', to: 'user#signup', via: 'post'
   # The priority is based upon order of creation:
