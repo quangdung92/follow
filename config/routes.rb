@@ -1,5 +1,7 @@
 Thuchanh::Application.routes.draw do
   
+  get "micropost/new"
+
   get "user/new"
   get "user/saved"
 
@@ -14,12 +16,12 @@ Thuchanh::Application.routes.draw do
   match '/relations', to: 'relation#create', via: 'post'
   match '/relations/:id', to: 'relation#destroy', via: 'delete'
   resources :users
-  resources :posts
   resources :relations,  only: [:create, :destroy]
+  resources :microposts
   
   match '/login', to: 'welcome#create', via: 'post'
   match '/logout' => 'welcome#destroy', as: :logout
-  match '/create', to: 'post#create', via: 'post'
+  match '/create', to: 'micropost#create', via: 'post'
   match '/signup', to: 'user#signup', via: 'post'
   # The priority is based upon order of creation:
   # first created -> highest priority.
