@@ -5,9 +5,6 @@ Thuchanh::Application.routes.draw do
   get "user/new"
   get "user/saved"
 
-  get "post/new"
-  get "post/show"
-
   get "welcome/index"
   get "welcome/sucess"
   get "welcome/error"
