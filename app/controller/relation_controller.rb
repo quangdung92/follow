@@ -7,6 +7,7 @@ class RelationController < ApplicationController
     
     current_user.following.each do |follow|
     logger.debug "following: #{follow.attributes.values}"
+  end
     redirect_to follow
   end
 
