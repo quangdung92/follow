@@ -1,18 +1,61 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Thuchanh</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
 
-<% if current_user %>
-    Hello <%= current_user.username %>
-  <% end %>
-<%= yield %>
-
-</body>
+		<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+		<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+		<%= javascript_include_tag "vendor/modernizr" %>
+		<%= csrf_meta_tags %>
+	</head>
+	<body class="body-bg">
+		<br />
+		<div class="row">
+			<nav class="top-bar">
+				<div class="colums">
+					<ul class="title-area">
+						<li class="name">
+							<h1><%= link_to "Home", root_path %></h1>
+						</li>
+					</ul>
+				</div>
+				<% if current_user %>
+				<div class="colums">
+					<ul class="title-area">
+						<li class="name">
+							<h1><%= link_to "Tweet", micropost_new_path %></h1>
+						</li>
+					</ul>
+				</div>
+								<div class="colums">
+					<ul class="title-area">
+						<li class="name">
+							<h1><%= link_to "Image", uploads_new_path %></h1>
+						</li>
+					</ul>
+				</div>
+				<div class="colums">
+					<ul class="right">
+						<li>
+							<h5><%= link_to "Logout", logout_path %></h5>
+						</li>
+					</ul>
+				</div>
+				<div class="colums">
+					<ul class="right">
+						<li>
+							<h5><font color="white">Hello</font> <%= link_to current_user.username, current_user %> </h5>
+						</li>
+					</ul>
+				</div>
+				<% end %>
+			</nav>
+		</div>
+		<br />
+		<%= yield %>
+		
+	</body>
 </html>
-
