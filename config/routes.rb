@@ -1,21 +1,27 @@
 Thuchanh::Application.routes.draw do
-  
   get "micropost/new"
 
   get "user/new"
   get "user/saved"
 
+  get "post/new"
+  get "post/show"
+
   get "welcome/index"
   get "welcome/sucess"
-  get "welcome/error"
+  get "welcome/edit"
   root :to => "welcome#index"
-  get '/users/:id', :to => 'welcome#sucess', :as => "user"
+  get '/users/:id', :to => 'welcome#sucess', :as => "user"  
+  
   match '/relations', to: 'relation#create', via: 'post'
   match '/relations/:id', to: 'relation#destroy', via: 'delete'
   resources :users
   resources :relations,  only: [:create, :destroy]
   resources :microposts
+  resources :uploads
   
+  get '/welcome/edit/:id', to: 'welcome#edit', as: 'welcome_edit'
+  match '/welcome/edit/:id', to: 'welcome#edit', via: 'post'
   match '/login', to: 'welcome#create', via: 'post'
   match '/logout' => 'welcome#destroy', as: :logout
   match '/create', to: 'micropost#create', via: 'post'
