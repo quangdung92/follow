@@ -1,15 +1,20 @@
-<center><h1>sign up</h1>
-<%= form_tag(:controller =>"user", :action => "signup", :method => "post") do %>
-<% if @user.errors.any? %>
-<h2>Errors:</h2>
-<ul>
-	<% @user.errors.full_messages.each do |message| %>
-	<li><%= message %></li>
-	<%end%>
-	</ul>
-	<%end%>
-Username<%= text_field_tag(:username)%><br />
-Password<%= text_field_tag(:pass)%><br />
-<%= submit_tag("save")%>
-<%end%>
-</center>
+<div class="medium-4 medium-centered row">
+	<div class="medium-10 medium-centered columns">
+		<h3>Sign up</h3> <%= form_tag(:controller =>"user", :action => "signup", :method => "post") do %>
+		<% if @user.errors.any? %> <h4>Errors:</h4>
+		<ul>
+			<% @user.errors.full_messages.each do |message| %>
+			<li>
+				<%= message %>
+			</li>
+			<%end%>
+		</ul> <%end%>
+		Username<%= text_field_tag(:username)%>
+		Password<%= text_field_tag(:pass)%>
+		Age<%= text_field_tag(:age)%>
+		Avatar<%= file_field_tag(:image)%>
+		<%= submit_tag("Sign", class: "button [tiny small large]")%>
+		<%end%>
+	</div>
+</div>
+
