@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   
-  attr_accessible :pass, :username
+class User < ActiveRecord::Base
+  attr_accessible :pass, :username, :image, :age
+  has_many :microposts, dependent: :destroy
   # Who am I following?
   has_many :following_relations, :class_name => "Relation", :foreign_key => :follower_id
   has_many :following, :through => :following_relations 
