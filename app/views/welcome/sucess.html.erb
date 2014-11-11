@@ -1,35 +1,55 @@
-Bat dau post bai:
-<a href="/post/new">bat dau viet</a>
-<hr />
-<h2><%= @user.username%><br /></h2>
-<%= @user.pass%><br />
-<% if current_user && current_user != @user %>
-  <% if current_user.following.include?(@user) %>
-    <%= form_for(current_user.following_relations.find_by_following_id(@user.id),
-             html: { method: :delete }) do |f| %>
-  <%= f.submit "Unfollow" %>
-<% end %>
-  <% else %>
-    <%= form_for @relation do |f| %>
-      <%= f.hidden_field :following_id, :value => @user.id %>
-      <%= f.submit "Follow" %>
-    <% end %>
-     <% end %>
-      <% end %>
-<br />
-Following
-<ul>
-  <% @user.following.each do |u| %>
-    <li><%= link_to u.username, u %></li>
-    <% @user.following.count %>
-  <% end %>
-</ul>
-Followed By
-<ul>
-  <% @user.followers.each do |u| %>
-    <li><%= link_to u.username, u %></li>
-  <% end %>
-</ul>
-<br />
+<div class="row">
+	<div class="medium-8 columns" style="background-color:#2ba6cb;border-right: 1px solid #466d98;">
+		Info
+	</div>
+	<div class="medium-2 columns" style="background-color:#2ba6cb;border-right: 1px solid #466d98;">
+		Following
+	</div>
+	<div class="medium-2 columns"style="background-color:#2ba6cb;border-right: 1px solid #466d98;">
+		Folowers
+	</div>
+</div>
+<div class="row">
+	<div class="medium-8 columns" style="background-color:#white;border-right: 1px solid #466d98;">
+		Username: <b><%= @user.username%></b><br />
+		Tuổi: <%= @user.age%>
+		<br />
+		<%= image_tag(@user.image, size: "120x100") %>
+		<br />
+		<br />
+		<% if current_user && current_user != @user %>
+				<% if current_user.following.include?(@user) %>
+				<%= form_for(current_user.following_relations.find_by_following_id(@user.id),
+				html: { method: :delete }) do |f| %>
+				<%= f.submit "Unfollow", class: "button [tiny small large]" %>
+				<% end %>
+				<% else %>
+				<%= form_for @relation do |f| %>
+				<%= f.hidden_field :following_id, :value => @user.id %>
+				<%= f.submit "Follow", class: "button [tiny small large]" %>
+				<% end %>
+				<% end %>
+				<% else %>
+				<%= link_to "edit", welcome_edit_path(@user)%>
+		<% end %>
+	</div>
+	<div class="medium-2 columns" style="background-color:#white">
+		<ul>
+			<% @user.following.each do |u| %>
+			<li>
+				<%= link_to u.username, u %>
 
-
+			</li>
+			<% end %>
+		</ul>
+	</div>
+	<div class="medium-2 columns"style="background-color:#white">
+		<ul>
+			<% @user.followers.each do |u| %>
+			<li>
+				<%= link_to u.username, u %>
+			</li>
+			<% end %>
+		</ul>
+	</div>
+</div>
