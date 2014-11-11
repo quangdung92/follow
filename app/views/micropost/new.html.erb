@@ -1,24 +1,38 @@
-<center>Post
-<%= form_tag(:controller =>"micropost", :action => "create", :method => "post") do %>
-<% if @post.errors.any? %>
-<h2>Errors:</h2>
-<ul>
-	<% @post.errors.full_messages.each do |message| %>
-	<li><%= message %></li>
-	<%end%>
-	</ul>
-	<%end%>
-<%= text_area_tag(:content) %><br />
-<%= submit_tag("save")%><a href="/welcome/index">Thoat</a>
-<%end%>
-</center>
-<h2>Display</h2><br />
-<% if !@posts.blank? %>
-<% for item in @posts %>
-<%= item.content%><br />
-<%= item.created_at%>
-<%end%>
-<%else%>
-<%end%>
+<div class="row">
+	<div class="medium-4 columns">
+		<fieldset>
+			<legend>
+				Post
+			</legend>
 
-
+			<label><%= form_tag(:controller =>"micropost", :action => "create", :method => "post") do %>
+				<% if @post.errors.any? %> <h4>Errors:</h4>
+				<ul>
+					<% @post.errors.full_messages.each do |message| %>
+					<li>
+						<%= message %>
+					</li>
+					<%end%>
+				</ul> <%end%>
+				<%= text_area_tag(:content) %>
+				<%= submit_tag("save", class: "button [tiny small large]")%>
+				<%end%> </label>
+		</fieldset>
+	</div>
+	<div class="medium-8 columns">
+		<br />
+		<ul class="pricing-table">
+			<li class="title">
+				Comment
+			</li>
+			<% if !@posts.blank? %>
+			<% for item in @posts %>
+			<li class="bullet-item">
+				<%= item.content%>
+			</li>
+			<%end%>
+			<%else%>
+			<%end%>
+		</ul>
+	</div>
+</div>
