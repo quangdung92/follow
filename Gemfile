@@ -17,9 +17,16 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'foundation-rails'
+  gem 'dropzonejs-rails'
+  gem 'turbolinks'
+  gem "paperclip", "~> 4.1"
+  gem 'bootstrap-sass', '~> 3.1.1'
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails', '~> 5.0.2'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
