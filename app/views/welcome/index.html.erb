@@ -1,20 +1,33 @@
-<center><h1>Login</h1>
-	<%= form_for(:session, url: login_path) do |f| %>   
-              <%= f.label :username %>
-              <%= f.text_field :username %>
-
-              <%= f.label :pass %>
-              <%= f.password_field :pass %>
-
-              <%= f.submit "Log in" %>
-    <% end %>
-<a href="/user/new">dang ky</a>
-</center>	
 <% if current_user %>
-<h2>Danh sach User</h2>
-<% @users.each do |user| %>
-  <li>
-    <%= link_to user.username, user %>
-<%end%>
+<div class="medium-4 medium-centered row">
+	<div class="medium-11 medium-centered columns">
+		<h4>Danh sach User</h4>
+	</div>
+	<div class="medium-10 medium-centered columns">
+		<% @users.each do |user| %>
+		<li>
+			<%= image_tag(user.image, size: "50x30") %>
+			<%= link_to user.username, user %>
+		</li>
+		<%end%>
+	</div>
+</div>
 <%else%>
+<div class="medium-4 medium-centered row">
+	<div class="medium-10 medium-centered columns">
+		<h4>Login</h4>
+		<%= form_for(:session, url: login_path) do |f| %>
+		<%= f.label :username %>
+		<%= f.text_field :username %>
+
+		<%= f.label :pass %>
+		<%= f.password_field :pass %>
+
+		<%= f.submit "Login", class: "button [tiny small large]" %>
+		<a href="/user/new" class="button [tiny small large]">Signup</a>
+		<% end %>
+	</div>
+</div>
 <%end%>
+
+
