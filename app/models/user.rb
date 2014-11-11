@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  
-class User < ActiveRecord::Base
   attr_accessible :pass, :username, :image, :age
   has_many :microposts, dependent: :destroy
   # Who am I following?
